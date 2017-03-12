@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    public MovementPath MyPath;
-    public float speed = 1;
-    public float maxDistanceToGoal = .1f;
-
+    [SerializeField]
+    private MovementPath MyPath; //Path to follow containing MovementPath script.
+    [SerializeField]
+    private float speed = 1; // adjusted by how far player must travel in turn.
+    [SerializeField]
+    private float maxDistanceToGoal = .1f; //How close to path node to get before setting new path node
+    [SerializeField]
     private IEnumerator<Transform> pointInPath;
 
 	// Use this for initialization
@@ -17,7 +20,8 @@ public class FollowPath : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         MovePlayer();	
 	}
 
@@ -25,7 +29,7 @@ public class FollowPath : MonoBehaviour
     {
         if (MyPath == null)
         {
-            Debug.LogError("Movement Path can not be null", gameObject);
+            Debug.LogError("Path can not be null", gameObject);
             return;
         }
 
